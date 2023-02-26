@@ -1,0 +1,96 @@
+@use "sass:selector";
+
+@mixin unify-parent($child) {
+    @at-root #{selector.unify(&, $child)} {
+        @content;
+    }
+}
+
+form {
+    width: 50%;
+    min-width: 250px;
+    max-width: 840px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+
+}
+
+mat-icon {
+    position: relative;
+    left: 50%;
+    transform: scale(2, 2) translate(-25%, 0);
+    padding: 15px;
+
+    color: rgb(0 96 223);
+}
+
+.customInput {
+    position: relative;
+}
+
+input {
+    border-radius: 4px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    font-size: large;
+    box-sizing: border-box;
+    border: 1px solid #0000003F;
+
+    &:hover {
+        border: 1px solid #000000FF;
+    }
+
+    &:focus+label {
+        @include unify-parent("label") {
+            transform: scale(0.8, 0.8) translate(-25%, -150%);
+            color: rgb(0 96 223);
+
+        }
+    }
+
+    &:focus {
+        clear: both;
+        border: 1px solid rgb(0 96 223);
+        box-shadow: none;
+    }
+
+
+}
+
+input[type="button"] {
+    background-color: rgb(0 96 223);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(5, 114, 255)
+    }
+}
+
+a {
+    justify-self: center;
+}
+
+
+label {
+    color: #0000008F;
+    font-size: large;
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 23px;
+    transition: 0.2s ease all;
+    background-color: white;
+    padding: 0 5px 0 5px;
+
+
+}

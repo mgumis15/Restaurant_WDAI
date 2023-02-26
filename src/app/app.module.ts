@@ -16,7 +16,10 @@ import { DishLiComponent } from './components/dish-li/dish-li.component'
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
-import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/auth'
+import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/auth';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RegistrationPageComponent } from './components/registration-page/registration-page.component'
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/aut
     DishesComponent,
     NavbarComponent,
     DishLiComponent,
+    LoginPageComponent,
+    PageNotFoundComponent,
+    RegistrationPageComponent,
 
   ],
   imports: [
