@@ -1,18 +1,45 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { DishesComponent } from './components/dishes/dishes.component'
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
+import { environment } from '../environments/environment'
+import { provideAuth, getAuth } from '@angular/fire/auth'
+import { provideFirestore, getFirestore } from '@angular/fire/firestore'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon'
+import { NavbarComponent } from './components/navbar/navbar.component'
+import { DishLiComponent } from './components/dish-li/dish-li.component'
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireAuthModule } from '@angular/fire/compat/auth'
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
+import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/auth'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DishesComponent,
+    NavbarComponent,
+    DishLiComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
+    { provide: PERSISTENCE, useValue: 'session' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

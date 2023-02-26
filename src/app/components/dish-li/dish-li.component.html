@@ -1,0 +1,24 @@
+<div class="card">
+    <picture>
+        <!-- <source media="(min-width: 1201px)"
+            srcset="https://cdn.pixabay.com/photo/2014/09/18/11/56/skyscrapers-450793_960_720.jpg"> -->
+        <img src='{{dish.imgs.length>0?dish.imgs[0]:"https://cdn.pixabay.com/photo/2017/02/15/10/39/salad-2068220_960_720.jpg"}}'
+            alt="dishImg">
+    </picture>
+    <div class="dishInfo">
+        <div>
+            <h1>{{dish.name}}</h1>
+            <h1>{{dish.price}}</h1>
+        </div>
+
+        <h2>{{dish.category}}</h2>
+        <p class="description">
+            {{dish.description}}
+        </p>
+    </div>
+    <div class="cardFooter">
+        <div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "wdailab6": {
+      "hosting": {
+        "restaurant": [
+          "wdailab6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "wdailab6"
+  }
+}
