@@ -1,3 +1,6 @@
+import { Review } from "./review.interface"
+import { Star } from "./star.interface"
+
 export interface Dish {
     name: string,
     category: string,
@@ -11,16 +14,7 @@ export interface Dish {
     type: string
     reviews: Review[],
     stars: Star[]
-
 }
 
-interface Review {
-    uid: string,
-    body: string,
-}
 
-interface Star {
-    uid: string,
-    score: number
-}
 

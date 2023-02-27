@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AngularFirestore } from "@angular/fire/compat/firestore"
-import { Dish } from '../components/dish-li/dish.interface'
+import { Dish } from '../interfaces/dish.interface'
 import { Observable } from 'rxjs'
 @Injectable({
   providedIn: 'root'

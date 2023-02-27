@@ -16,10 +16,13 @@ import { DishLiComponent } from './components/dish-li/dish-li.component'
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
-import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/auth';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { SETTINGS as AUTH_SETTINGS, PERSISTENCE } from '@angular/fire/compat/auth'
+import { LoginPageComponent } from './components/login-page/login-page.component'
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component'
+import { AuthService } from './services/auth.service'
+import { ReactiveFormsModule } from '@angular/forms';
+import { VerifyEmailPageComponent } from './components/verify-email-page/verify-email-page.component'
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { RegistrationPageComponent } from './components/registration-page/regist
     LoginPageComponent,
     PageNotFoundComponent,
     RegistrationPageComponent,
+    VerifyEmailPageComponent,
 
   ],
   imports: [
@@ -40,11 +44,13 @@ import { RegistrationPageComponent } from './components/registration-page/regist
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: AUTH_SETTINGS, useValue: { appVerificationDisabledForTesting: true } },
     { provide: PERSISTENCE, useValue: 'session' },
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,15 +1,19 @@
-<form action="loginForm">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="formGroup">
     <mat-icon>assignment_ind</mat-icon>
 
     <h1>Log in</h1>
     <div class="customInput">
-        <input type="email" name="femail" />
+        <input type="email" name="femail" value="" formControlName="email"
+            onchange="this.setAttribute('value', this.value);" />
         <label for="femail">Email Address</label>
     </div>
     <div class="customInput">
-        <input type=" password" name="fpass" />
-        <label for="fpass">Password</label>
+        <input type="password" name="fpass" value="" formControlName="password"
+            onchange="this.setAttribute('value', this.value);" />
+        <label for=" fpass">Password</label>
     </div>
-    <input type="button" value="LOG IN">
+    <button type="submit" [disabled]="!loginForm.valid">
+        LOG IN
+    </button>
     <a href="/Registration">Don't have an account yet? Sign Up</a>
 </form>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { AngularFirestore } from '@angular/fire/compat/firestore'
 import { Observable } from 'rxjs'
 import { DishesService } from 'src/app/services/dishes.service'
-import { Dish } from '../dish-li/dish.interface'
+import { Dish } from '../../interfaces/dish.interface'
 
 @Component({
   selector: 'app-dishes',

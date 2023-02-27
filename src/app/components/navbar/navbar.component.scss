@@ -6,8 +6,15 @@ mat-icon {
     color: white;
     text-decoration: none;
 
+
+    span {
+        line-height: 36px;
+        font-size: larger;
+        // vertical-align: text-top;
+    }
+
     mat-icon {
-        transform: scale(1.5, 1.5);
+        transform: scale(1.5, 1.5) translate(0, 2px);
     }
 }
 
@@ -23,7 +30,7 @@ mat-icon {
         position: relative;
         left: 50%;
         height: 50%;
-        transform: scale(2, 2) translate(-25%, 0);
+        transform: scale(2, 2) translate(-25%, 2px);
     }
 }
 
@@ -31,10 +38,11 @@ mat-icon {
     // background-color: white;
     width: 200px;
     position: absolute;
-    right: 3.5em;
+    right: 4em;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-align: right;
 
 
 }

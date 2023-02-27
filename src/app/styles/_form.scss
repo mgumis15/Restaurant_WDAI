@@ -6,7 +6,7 @@
     }
 }
 
-form {
+.formGroup {
     width: 50%;
     min-width: 250px;
     max-width: 840px;
@@ -52,33 +52,51 @@ input {
         @include unify-parent("label") {
             transform: scale(0.8, 0.8) translate(-25%, -150%);
             color: rgb(0 96 223);
-
         }
     }
 
-    &:focus {
-        clear: both;
-        border: 1px solid rgb(0 96 223);
-        box-shadow: none;
+    &:not([value=""])+label {
+        @include unify-parent("label") {
+            transform: scale(0.8, 0.8) translate(-25%, -150%);
+            color: rgb(0 96 223);
+        }
     }
 
+    &:not([value=""]):not(:focus):invalid+label {
+        @include unify-parent("label") {
+            transform: scale(0.8, 0.8) translate(-25%, -150%);
+            color: red;
+        }
+    }
 
+    &.ng-touched.ng-invalid+label {
+        @include unify-parent("label") {
+            color: red;
+        }
+    }
 }
 
-input[type="button"] {
+
+button {
     background-color: rgb(0 96 223);
     color: #fff;
     font-weight: bold;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    font-size: large;
+    border-radius: 4px;
     cursor: pointer;
 
     &:hover {
         background-color: rgb(5, 114, 255)
     }
+
+    &:disabled {
+        opacity: 0.3;
+    }
 }
 
-a {
-    justify-self: center;
-}
 
 
 label {
@@ -93,4 +111,10 @@ label {
     padding: 0 5px 0 5px;
 
 
+}
+
+.errorsContainer {
+    color: red;
+    font-size: large;
+    line-height: 1.2em;
 }

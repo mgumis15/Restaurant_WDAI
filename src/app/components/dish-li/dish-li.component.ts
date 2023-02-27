@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
-import { Dish } from './dish.interface'
+import { Dish } from '../../interfaces/dish.interface'
 
 @Component({
   selector: 'app-dish-li',

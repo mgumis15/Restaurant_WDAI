@@ -1,19 +1,51 @@
-<form action="loginForm">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="formGroup">
     <mat-icon>assignment_returned</mat-icon>
 
-    <h1>Sign up</h1>
+    <h1>Sign Up</h1>
     <div class="customInput">
-        <input type="email" name="femail" />
-        <label for="femail">Email Address</label>
+        <input type="text" name="fname" value="" formControlName="name"
+            onchange="this.setAttribute('value', this.value);" />
+        <label for="femail"
+            [ngClass]="(registerForm.controls['name'].invalid &&registerForm.controls['name'].touched)?'errorLabel':''">Name*</label>
     </div>
     <div class="customInput">
-        <input type="password" name="fpass" />
-        <label for="fpass">Password</label>
+        <input type="email" name="femail" value="" formControlName="email"
+            onchange="this.setAttribute('value', this.value);" />
+        <label for="femail">Email Address*</label>
     </div>
     <div class="customInput">
-        <input type="password" name="fConfPass" />
-        <label for="fConfPass">Confirm password</label>
+        <input type="password" name="fpass" value="" formControlName="password"
+            onchange="this.setAttribute('value', this.value);" />
+        <label for=" fpass">Password (min 4 chars)*</label>
     </div>
-    <input type="button" value="SIGN UP">
+    <div class="customInput">
+        <input type="password" name="fConfirmPass" value="" formControlName="confirmPassword"
+            onchange="this.setAttribute('value', this.value);" />
+        <label for=" fConfirmPass">Confirm Password*</label>
+    </div>
+    <button type="submit" [disabled]="!registerForm.valid">
+        SIGN UP
+    </button>
     <a href="/Login">Already have an account? Log in</a>
+    <div class="errorsContainer" *ngIf="registerForm.invalid">
+        <div
+            *ngIf="registerForm.controls['email'].errors && (registerForm.controls['email'].touched || registerForm.controls['email'].dirty)">
+            <p *ngIf="registerForm.controls['email'].errors['email']">Incorrect email</p>
+            <p *ngIf="registerForm.controls['email'].errors['required']">Email required</p>
+        </div>
+        <div
+            *ngIf="registerForm.controls['name'].errors && (registerForm.controls['name'].touched || registerForm.controls['name'].dirty)">
+            <p *ngIf="registerForm.controls['name'].errors['required']">Name required</p>
+        </div>
+        <div
+            *ngIf="registerForm.controls['password'].errors && (registerForm.controls['password'].touched || registerForm.controls['password'].dirty)">
+            <p *ngIf="registerForm.controls['password'].errors['required']">Password required</p>
+            <p *ngIf="registerForm.controls['password'].errors['minlength']">Password min. length is 4</p>
+        </div>
+        <div
+            *ngIf="registerForm.errors && (registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty)">
+            <p *ngIf="registerForm.errors['passNotMatch']">Passwords don't match</p>
+        </div>
+
+    </div>
 </form>

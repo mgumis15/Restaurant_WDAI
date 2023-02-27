@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component } from '@angular/core'
+import { AuthService } from 'src/app/services/auth.service'
+import { FormBuilder, Validators } from '@angular/forms'
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -7,4 +8,23 @@ import { Component } from '@angular/core';
 })
 export class LoginPageComponent {
 
+
+  loginForm = this.fb.group({
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    password: ['', Validators.required]
+  })
+  constructor(
+    public authService: AuthService,
+    private fb: FormBuilder
+  ) { }
+
+  validate(): boolean {
+    // if (this.loginForm.value.email
+    return true
+  }
+  onSubmit() {
+    // if (this.validate())
+    //   this.authService.logIn(this.loginForm.value.email, this.loginForm.value.email)
+    console.log(this.loginForm.value)
+  }
 }
