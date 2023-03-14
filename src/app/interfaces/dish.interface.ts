@@ -16,5 +16,7 @@ export interface Dish {
     stars: Star[]
 }
 
+export interface DishId extends Dish { id: string }
+
 
 

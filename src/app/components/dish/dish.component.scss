@@ -1,0 +1,88 @@
+.container {
+    background-color: red;
+    max-width: 840px;
+    width: 100%;
+    min-width: none;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0);
+    display: flex;
+}
+
+picture {
+    width: 100%;
+    height: 365px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        position: absolute;
+        height: 365px;
+        object-fit: cover;
+        // display: none;
+    }
+
+    mat-icon {
+        color: white;
+        z-index: 2;
+        transform: scale(2, 2);
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(50, 50, 50, 0.5);
+        transition: all 0.15s ease-in-out;
+        font-weight: bolder;
+
+        &:hover {
+            background-color: rgba(50, 50, 50, 0.7);
+            cursor: pointer;
+        }
+
+        &:first-of-type {
+            left: 20%;
+            bottom: 10%;
+        }
+
+        &:last-of-type {
+            right: 20%;
+            bottom: 10%;
+        }
+
+    }
+
+    .dots {
+        width: 50%;
+        position: absolute;
+        height: 48px;
+        z-index: 2;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        div {
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(50, 50, 50, 0.7);
+            ;
+
+            &:hover {
+                background-color: rgba(200, 200, 200, 0.7);
+                cursor: pointer;
+            }
+
+            .active {
+                background-color: rgba(200, 200, 200, 0.8);
+            }
+        }
+
+    }
+
+}

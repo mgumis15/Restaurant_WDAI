@@ -1,0 +1,13 @@
+<div *ngIf="dish" class="container">
+    <picture>
+        <img src="{{getImg()}}" alt="{{dish.name}}">
+        <mat-icon (click)="nextImg()">navigate_before</mat-icon>
+        <mat-icon (click)="prevImg()">navigate_next</mat-icon>
+        <div class="dots">
+            <div *ngFor="let img of dish.imgs; let i = index" class="{{imgId==i?'active':''}}"></div>
+        </div>
+
+    </picture>
+
+
+</div>

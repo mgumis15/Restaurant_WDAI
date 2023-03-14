@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { DishesComponent } from './components/dishes/dishes.component'
+import { MenuComponent } from './components/menu/menu.component'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { environment } from '../environments/environment'
 import { provideAuth, getAuth } from '@angular/fire/auth'
@@ -21,19 +21,21 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component'
 import { AuthService } from './services/auth.service'
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'
 import { VerifyEmailPageComponent } from './components/verify-email-page/verify-email-page.component'
+import { DishComponent } from './components/dish/dish.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    DishesComponent,
+    MenuComponent,
     NavbarComponent,
     DishLiComponent,
     LoginPageComponent,
     PageNotFoundComponent,
     RegistrationPageComponent,
     VerifyEmailPageComponent,
+    DishComponent,
 
   ],
   imports: [
