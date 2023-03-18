@@ -10,6 +10,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth'
 import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatIconModule } from '@angular/material/icon'
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { DishLiComponent } from './components/dish-li/dish-li.component'
@@ -24,6 +25,7 @@ import { AuthService } from './services/auth.service'
 import { ReactiveFormsModule } from '@angular/forms'
 import { VerifyEmailPageComponent } from './components/verify-email-page/verify-email-page.component'
 import { DishComponent } from './components/dish/dish.component'
+import { OwnCurrencyPipePipe } from './pipes/own-currency-pipe.pipe'
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { DishComponent } from './components/dish/dish.component'
     RegistrationPageComponent,
     VerifyEmailPageComponent,
     DishComponent,
+    OwnCurrencyPipePipe,
 
   ],
   imports: [
@@ -47,6 +50,7 @@ import { DishComponent } from './components/dish/dish.component'
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule
   ],
   providers: [

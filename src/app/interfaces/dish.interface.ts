@@ -1,6 +1,4 @@
 import { Review } from "./review.interface"
-import { Star } from "./star.interface"
-
 export interface Dish {
     name: string,
     category: string,
@@ -12,8 +10,7 @@ export interface Dish {
     price: number,
     score: number,
     type: string
-    reviews: Review[],
-    stars: Star[]
+    reviews: Review[]
 }
 
 export interface DishId extends Dish { id: string }

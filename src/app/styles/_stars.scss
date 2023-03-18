@@ -1,0 +1,47 @@
+.starsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    .star {
+        clip-path: polygon(50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%);
+        width: 25px;
+        height: 25px;
+        background-color: white;
+    }
+
+    p {
+        font-size: 25px;
+        margin: 0;
+        padding-left: 5px;
+        text-align: center;
+
+    }
+
+    .starBorder {
+        clip-path: polygon(50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%);
+        width: 30px;
+        height: 30px;
+        background-color: black;
+    }
+}

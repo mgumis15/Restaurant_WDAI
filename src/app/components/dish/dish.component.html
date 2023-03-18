@@ -1,13 +1,75 @@
 <div *ngIf="dish" class="container">
     <picture>
         <img src="{{getImg()}}" alt="{{dish.name}}">
-        <mat-icon (click)="nextImg()">navigate_before</mat-icon>
-        <mat-icon (click)="prevImg()">navigate_next</mat-icon>
-        <div class="dots">
-            <div *ngFor="let img of dish.imgs; let i = index" class="{{imgId==i?'active':''}}"></div>
+        <div class="controls" *ngIf="dish.imgs.length>1">
+            <mat-icon (click)="prevImg()">navigate_before</mat-icon>
+            <mat-icon (click)="nextImg()">navigate_next</mat-icon>
+            <div class="dots">
+                <div *ngFor="let img of dish.imgs; let i = index" class="{{imgId==i?'active':''}}"
+                    (click)="setImage(i)"></div>
+            </div>
         </div>
-
     </picture>
+    <article>
+        <div>
+            <h1>{{dish.name|uppercase}}</h1>
+            <h1>{{dish.price | ownCurrencyPipe}}</h1>
+        </div>
+        <div [ngStyle]="{'display':'flex'}">
+            <h2>{{dish.category|uppercase}}</h2>
+            <div class="starsContainer">
+                <div *ngFor="let star of [1,2,3,4,5]" class="starBorder">
+                    <div class="star" [ngStyle]="{'backgroundColor':star<=stars?'gold':'white'}">
+                    </div>
+                </div>
+                <p>{{stars}}</p>
+            </div>
+        </div>
+        <div [ngStyle]="{'display':'flex'}">
+            <div class="dropdown">
+                <button>Ingredients</button>
+                <div class="dropdown-content">
+                    <p *ngFor="let igredient of dish.ingredients ">{{igredient}}</p>
+                </div>
+            </div>
+            <div class="orderControls">
+                <button (click)="incrementOrder($event)" [disabled]="order==dish.maxQuantity">
+                    <mat-icon class="addOrder">add</mat-icon>
+                </button>
+                <p>{{order}}</p>
+                <button (click)="decrementOrder($event)" [disabled]="order==0">
+                    <mat-icon class="removeOrder">remove</mat-icon>
+                </button>
+
+            </div>
+
+        </div>
+        <p class="description">
+            {{dish.description}}
+        </p>
+
+    </article>
+    <article>
+        <h1>Reviews</h1>
+        <div class="review" *ngFor="let review of dish.reviews">
+            <div class="header">
+                <div>
+                    <h3><em>{{review.userName}}</em></h3>
+                    <div class="starsContainer">
+                        <div *ngFor="let star of [1,2,3,4,5]" class="starBorder">
+                            <div class="star" [ngStyle]="{'backgroundColor':star<=review.stars?'gold':'white'}">
+                            </div>
+                        </div>
+                        <p>{{review.stars}}</p>
+                    </div>
+                </div>
+
+                <h3>{{review.date.seconds*1000|date:'dd MMM yyyy'}}</h3>
+
+            </div>
+            <p>{{review.body}}</p>
+        </div>
+    </article>
 
 
 </div>
