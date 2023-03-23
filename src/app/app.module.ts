@@ -23,7 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { RegistrationPageComponent } from './components/registration-page/registration-page.component'
 import { AuthService } from './services/auth.service'
 import { ReactiveFormsModule } from '@angular/forms'
-import { VerifyEmailPageComponent } from './components/verify-email-page/verify-email-page.component'
+
 import { DishComponent } from './components/dish/dish.component'
 import { OwnCurrencyPipePipe } from './pipes/own-currency-pipe.pipe'
 
@@ -36,7 +36,6 @@ import { OwnCurrencyPipePipe } from './pipes/own-currency-pipe.pipe'
     LoginPageComponent,
     PageNotFoundComponent,
     RegistrationPageComponent,
-    VerifyEmailPageComponent,
     DishComponent,
     OwnCurrencyPipePipe,
 

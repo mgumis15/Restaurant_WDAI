@@ -21,17 +21,11 @@ export class RegistrationPageComponent {
     private fb: FormBuilder
   ) { }
 
-  validate(): boolean {
-    // if (this.loginForm.value.email
-    return true
-  }
   onSubmit() {
-    // if (this.validate())
-    //   this.authService.logIn(this.loginForm.value.email, this.loginForm.value.email)
-    console.log(this.registerForm.value)
+    if (!this.registerForm.invalid)
+      this.authService.signUp(this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password)
   }
   matchingPasswordsValidator(form: FormGroup) {
-    console.log(form)
     if (form.value.password && form.value.confirmPassword) {
       if (form.value.password !== form.value.confirmPassword) {
         return { passNotMatch: true }

@@ -1,32 +1,34 @@
 import { Injectable, NgZone } from '@angular/core'
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore'
 import { Route, Router } from '@angular/router'
 import firebase from 'firebase/compat/app'
-import { User } from '../interfaces/user.interface'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+
+import { User, UserId } from '../interfaces/user.interface'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any
+  usersCollection: AngularFirestoreCollection<User>
+
   constructor(
-    public afAuth: AngularFireAuth,
-    public afs: AngularFirestore,
+    public auth: AngularFireAuth,
+    public firestore: AngularFirestore,
     public router: Router,
     public ngZone: NgZone
   ) {
-
-    this.afAuth.authState
+    this.usersCollection = this.firestore.collection("users")
+    this.auth.authState
       .subscribe((user) => {
         if (user) {
-          this.userData = user
-          localStorage.setItem('user', JSON.stringify(this.userData))
+          this.getUserData(user)
         } else {
           localStorage.setItem('user', 'null')
         }
         JSON.parse(localStorage.getItem('user')!)
-
       })
   }
 
@@ -36,61 +38,59 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    return this.afAuth
+    return this.auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        this.setUserData(res.user)
-        this.afAuth.authState
-          .subscribe((user) => {
-            if (user) {
-              this.router.navigate(["Menu"])
-            }
-          })
+        if (res.user) {
+          this.getUserData(res.user)
+          this.auth.authState
+            .subscribe((user) => {
+              if (user) {
+                this.router.navigate(["menu"])
+              }
+            })
+        }
       }).catch((err) => {
         console.log(err.message)
       })
   }
 
-  signUp(nick: string, email: string, firstPassword: string, secondPassword: string) {
-
-    return this.afAuth
+  signUp(name: string, email: string, firstPassword: string) {
+    return this.auth
       .createUserWithEmailAndPassword(email, firstPassword)
       .then((res) => {
-        this.setUserData(res.user)
+        if (res.user) {
+          this.router.navigate(["menu"])
+          this.firestore.doc(`users/${res.user.uid}`).set({
+            uid: res.user.uid,
+            email: res.user.email,
+            name: name,
+            banned: false,
+            role: "client",
+            orders: []
+          }, { merge: true })
+          this.getUserData(res.user)
+        }
       })
       .catch((err) => {
         console.log(err.message)
       })
   }
 
-  sendVerificationEmail() {
-    return this.afAuth.currentUser
-      .then((user: any) => user.sendVerificationEmail())
-      .then(() => {
-        this.router.navigate(["verify-email-page"])
-      })
-  }
-
-  setUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`)
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      nick: user.nick,
-      banned: user.banned,
-      role: user.role,
-      emailVerified: user.emailVerified,
-      orders: user.orders
-    }
-
-    return userRef.set(userData, { merge: true })
+  getUserData(user: any) {
+    return this.usersCollection.doc(user.uid).snapshotChanges().pipe(a => {
+      console.log(a)
+      // const data = a.payload.doc.data() as User
+      // const id = a.payload.doc.id
+      return a
+    })
   }
 
 
   logout() {
-    return this.afAuth.signOut().then(() => {
+    return this.auth.signOut().then(() => {
       localStorage.removeItem("user")
-      this.router.navigate(["Login"])
+      this.router.navigate(["login"])
     })
   }
 }

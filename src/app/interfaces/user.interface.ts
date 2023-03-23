@@ -1,11 +1,11 @@
 import { Order } from "./order.interface"
 
 export interface User {
-    uid: string,
     email: string,
-    nick: string,
+    name: string,
     banned: boolean,
     role: "client" | "manager" | "admin",
-    emailVerified: boolean,
     orders: Order[]
 }
+
+export interface UserId extends User { uid: string }

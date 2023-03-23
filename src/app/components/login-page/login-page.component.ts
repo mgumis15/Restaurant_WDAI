@@ -10,21 +10,16 @@ export class LoginPageComponent {
 
 
   loginForm = this.fb.group({
-    email: ['', Validators.compose([Validators.required, Validators.email])],
-    password: ['', Validators.required]
+    email: ['adminWDAI@wdaiAGH.pl', Validators.compose([Validators.required, Validators.email])],
+    password: ['50%AghWdai', Validators.required]
   })
   constructor(
     public authService: AuthService,
     private fb: FormBuilder
   ) { }
 
-  validate(): boolean {
-    // if (this.loginForm.value.email
-    return true
-  }
   onSubmit() {
-    // if (this.validate())
-    //   this.authService.logIn(this.loginForm.value.email, this.loginForm.value.email)
-    console.log(this.loginForm.value)
+    if (!this.loginForm.invalid && this.loginForm.value.email && this.loginForm.value.password)
+      this.authService.logIn(this.loginForm.value.email, this.loginForm.value.password)
   }
 }
